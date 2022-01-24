@@ -5,6 +5,7 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.sql.Delete;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,8 @@ public class TaskController {
     }
 
     @DeleteMapping(value = "{taskId}")
-    public ResponseEntity<Void> deleteTask(@RequestParam Long taskId) {
-        return ResponseEntity.ok().build();
+    public void deleteTask(@PathVariable Long taskId) {
+        deleteTask(taskId);
     }
 
     @PutMapping
