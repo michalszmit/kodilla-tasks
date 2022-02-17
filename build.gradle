@@ -26,6 +26,9 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java:8.0.25'
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.24'
 
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
+	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+
 	compileOnly 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
