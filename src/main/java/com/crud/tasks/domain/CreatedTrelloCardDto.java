@@ -21,6 +21,15 @@ public class CreatedTrelloCardDto {
     @JsonProperty("shortUrl")
     private String shortUrl;
 
+    @JsonProperty("badges")
+    private Badges badges;
+
+    public CreatedTrelloCardDto(String id, String name, String shortUrl) {
+        this.id = id;
+        this.name = name;
+        this.shortUrl = shortUrl;
+    }
+
 /*    //Modul 22 zadanie 3
     @JsonProperty("badges")
     private String badges;*/
