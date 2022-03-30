@@ -18,34 +18,22 @@ public class EmailScheduler {
     private final AdminConfig adminConfig;
 
     @Scheduled(cron = "0 0 10 * * *")
-    //@Scheduled(fixedDelay = 10000)
     public void sendInformationEmail() {
-        long size = taskRepository.count();
-        simpleEmailService.send(
-                new Mail(
-                        adminConfig.getAdminMail(),
-                        SUBJECT,
-                        "Currently in database you got: " + size + " tasks",
-                        null
-                )
-        );
+            long size = taskRepository.count();
+            String txt;
+            if (size > 1) {
+                txt = " tasks";
+            } else if(size == 1) {
+                txt = " task";
+            } else {
+                txt = " no tasks available";
+            }
 
-        /*long size = taskRepository.count();
-        String taskOrTasks = size >=0 ? " tasks" : " task";
-        simpleEmailService.send(new Mail(
-                adminConfig.getAdminMail(),
-                SUBJECT,
-                "Currently in database you got: " + size + taskOrTasks*//*taskOrTasks()*//*
-        ));*/
-    }
-       /* private String taskOrTasks(){
-        long size = taskRepository.count();
-        if(size > 1){
-            return size + " tasks";
-        } else if(size == 1){
-            return size + " task";
-        } else {
-            return "no tasks";
+            simpleEmailService.send(
+                    new Mail(
+                            adminConfig.getAdminMail(),
+                            SUBJECT,
+                            "Currently in database you got: " + size + txt,
+                            null));
         }
-    }*/
 }
