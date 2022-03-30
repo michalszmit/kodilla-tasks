@@ -93,8 +93,8 @@ class TrelloFacadeTest {
 
         trelloBoardDtos.forEach(trelloBoardDto -> {
 
-            assertThat(trelloBoardDto.getId()).isEqualTo("test");
-            assertThat(trelloBoardDto.getName()).isEqualTo("1");
+            assertThat(trelloBoardDto.getId()).isEqualTo("1");
+            assertThat(trelloBoardDto.getName()).isEqualTo("test");
 
             trelloBoardDto.getLists().forEach(trelloListDto -> {
                 assertThat(trelloListDto.getId()).isEqualTo("1");

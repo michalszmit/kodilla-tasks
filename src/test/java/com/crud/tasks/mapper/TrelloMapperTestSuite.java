@@ -23,7 +23,7 @@ public class TrelloMapperTestSuite {
         //Given
         List<TrelloListDto> testList = new ArrayList<>();
         List<TrelloBoardDto> testBoard = new ArrayList<>();
-        TrelloBoardDto boardDto = new TrelloBoardDto("testBoard", "1111", testList);
+        TrelloBoardDto boardDto = new TrelloBoardDto("1111", "testBoard", testList);
         testBoard.add(boardDto);
         //When
         List<TrelloBoard> boards = mapper.mapToBoards(testBoard);
@@ -43,9 +43,8 @@ public class TrelloMapperTestSuite {
         //When
         List<TrelloBoardDto> boardDto = mapper.mapToBoardsDto(testBoard);
         //Then
-        //Wychodzi na odwrót getId pobiera nazwę, a getName pobiera ID
-        assertEquals("testBoard", boardDto.get(0).getId());
-        assertEquals("1111", boardDto.get(0).getName());
+        assertEquals("1111", boardDto.get(0).getId());
+        assertEquals("testBoard", boardDto.get(0).getName());
     }
 
     @Test
