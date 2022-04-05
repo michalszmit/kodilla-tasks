@@ -21,7 +21,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -133,9 +133,8 @@ class TaskControllerTest {
         TaskDto taskDto = new TaskDto(8L, "task title X", "task content X");
         Task task = new Task(8L, "task title X", "task content X");
 
-        when(taskMapper.mapToTaskDto(any(Task.class))).thenReturn(taskDto);
         when(taskMapper.mapToTask(any(TaskDto.class))).thenReturn(task);
-        when(dbService.saveTask(any(Task.class))).thenReturn(task);
+        when(dbService.saveTask(task)).thenReturn(task);
 
         Gson gson = new Gson();
         String json = gson.toJson(taskDto);
@@ -147,8 +146,6 @@ class TaskControllerTest {
                         .content(json)
                         .characterEncoding("UTF-8"))
                 .andExpect(MockMvcResultMatchers.status().is(200));
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(8)))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("task title X")))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.is("task content X")));
+                verify(dbService, atLeastOnce()).saveTask(task);
     }
 }
