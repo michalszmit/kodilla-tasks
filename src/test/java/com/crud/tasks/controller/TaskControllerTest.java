@@ -7,6 +7,8 @@ import com.crud.tasks.service.DbService;
 import com.google.gson.Gson;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.mockito.verification.VerificationMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -146,6 +148,6 @@ class TaskControllerTest {
                         .content(json)
                         .characterEncoding("UTF-8"))
                 .andExpect(MockMvcResultMatchers.status().is(200));
-                verify(dbService, atLeastOnce()).saveTask(task);
+                verify(dbService, Mockito.times(1)).saveTask(task);
     }
 }
